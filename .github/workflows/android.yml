@@ -2,10 +2,17 @@ name: Android CI
 
 on:
   push:
-    branches: [ "**" ]
+    branches:
+      - main
+      - master
   pull_request:
-    branches: [ "**" ]
+    branches:
+      - main
+      - master
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -52,3 +59,4 @@ jobs:
           name: app-debug-apk
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
+
