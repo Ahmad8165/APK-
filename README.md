@@ -17,4 +17,4 @@ To build the debug APK:
 ```
 
 ---
-*Last updated:* 2026-08-06 21:50:00 UTC (Updated official Gradle Wrapper & .gitattributes)
+*Last updated:* 2026-08-06 22:05:00 UTC (Regenerated Gradle 9.3.1 Wrapper with wrapper validation settings)
