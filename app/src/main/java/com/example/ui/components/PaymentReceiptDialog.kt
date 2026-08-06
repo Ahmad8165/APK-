@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.*
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -96,7 +97,7 @@ fun PaymentReceiptDialog(
                     }
                 }
 
-                Divider(modifier = Modifier.padding(vertical = 14.dp))
+                HorizontalDivider(modifier = Modifier.padding(vertical = 14.dp))
 
                 // Receipt Status & Number
                 Box(
@@ -154,7 +155,7 @@ fun PaymentReceiptDialog(
                             ReceiptRow("Next Due Date", receipt.nextDueDate)
                         }
 
-                        Divider(modifier = Modifier.padding(vertical = 4.dp))
+                        HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
 
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -249,7 +250,7 @@ fun PaymentReceiptDialog(
                                 .weight(1f)
                                 .testTag("share_receipt_button")
                         ) {
-                            Icon(Icons.Default.TextSnippet, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Icon(Icons.AutoMirrored.Filled.TextSnippet, contentDescription = null, modifier = Modifier.size(18.dp))
                             Spacer(modifier = Modifier.width(6.dp))
                             Text("Share Text", fontWeight = FontWeight.Bold)
                         }

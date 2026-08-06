@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.SettingsManager
 import com.example.notification.DailyDueReceiver
+import com.example.notification.DuePaymentWorker
 import com.example.ui.viewmodel.MainViewModel
 
 @Composable
@@ -144,33 +145,58 @@ fun SettingsScreen(
                     )
                 }
 
-                Divider()
+                HorizontalDivider()
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(Icons.Default.Notifications, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Column {
-                            Text(text = "Daily Due Fee Reminder", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
-                            Text(
-                                text = "Every day at $notificationTime AM",
-                                fontSize = 12.sp,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(Icons.Default.Notifications, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Column {
+                                Text(text = "WorkManager Due Fee Check", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+                                Text(
+                                    text = "Periodic background task (24h interval)",
+                                    fontSize = 12.sp,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
                         }
                     }
-                    Button(
-                        onClick = {
-                            DailyDueReceiver.scheduleDailyNotification(context, 9, 0)
-                            Toast.makeText(context, "Notification scheduled for 9:00 AM daily", Toast.LENGTH_SHORT).show()
-                        },
-                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        Text("Reset 9 AM", fontSize = 11.sp)
+                        OutlinedButton(
+                            onClick = {
+                                DuePaymentWorker.triggerImmediateCheck(context)
+                                Toast.makeText(context, "WorkManager due payment check triggered!", Toast.LENGTH_SHORT).show()
+                            },
+                            modifier = Modifier.weight(1f),
+                            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 6.dp)
+                        ) {
+                            Icon(Icons.Default.PlayArrow, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text("Check Now", fontSize = 12.sp)
+                        }
+
+                        Button(
+                            onClick = {
+                                DuePaymentWorker.schedulePeriodicCheck(context)
+                                DailyDueReceiver.scheduleDailyNotification(context, 9, 0)
+                                Toast.makeText(context, "WorkManager periodic task scheduled!", Toast.LENGTH_SHORT).show()
+                            },
+                            modifier = Modifier.weight(1f),
+                            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 6.dp)
+                        ) {
+                            Icon(Icons.Default.Schedule, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text("Reschedule", fontSize = 12.sp)
+                        }
                     }
                 }
             }
@@ -224,7 +250,7 @@ fun SettingsScreen(
                     )
                 }
 
-                Divider()
+                HorizontalDivider()
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),

@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.*
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -231,7 +232,7 @@ fun CustomerDetailDialog(
                         onClick = onViewHistory,
                         modifier = Modifier.weight(1f)
                     ) {
-                        Icon(Icons.Default.ReceiptLong, contentDescription = null, modifier = Modifier.size(16.dp))
+                        Icon(Icons.AutoMirrored.Filled.ReceiptLong, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(modifier = Modifier.width(4.dp))
                         Text("History", fontSize = 12.sp)
                     }
@@ -260,7 +261,7 @@ fun CustomerDetailDialog(
                     )
                 }
 
-                Divider(modifier = Modifier.padding(vertical = 16.dp))
+                HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
 
                 // Detailed Info List
                 Column(
@@ -280,7 +281,7 @@ fun CustomerDetailDialog(
                     DetailRow(icon = Icons.Default.MyLocation, label = "GPS Location", value = customer.gpsLocation.ifEmpty { "Not set" })
                     DetailRow(icon = Icons.Default.Build, label = "Installation Date", value = customer.installationDate)
                     if (customer.notes.isNotBlank()) {
-                        DetailRow(icon = Icons.Default.Notes, label = "Notes", value = customer.notes)
+                        DetailRow(icon = Icons.AutoMirrored.Filled.Notes, label = "Notes", value = customer.notes)
                     }
                 }
             }

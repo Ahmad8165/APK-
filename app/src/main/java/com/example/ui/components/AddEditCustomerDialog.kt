@@ -6,6 +6,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.*
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -84,7 +85,7 @@ fun AddEditCustomerDialog(
                     }
                 }
 
-                Divider(modifier = Modifier.padding(vertical = 12.dp))
+                HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
 
                 // Scrollable Form Fields
                 Column(
@@ -199,7 +200,7 @@ fun AddEditCustomerDialog(
                                 readOnly = true,
                                 leadingIcon = { Icon(Icons.Default.Wifi, contentDescription = null) },
                                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                                modifier = Modifier.menuAnchor().fillMaxWidth()
+                                modifier = Modifier.menuAnchor(MenuAnchorType.PrimaryNotEditable, true).fillMaxWidth()
                             )
                             ExposedDropdownMenu(
                                 expanded = expanded,
@@ -250,7 +251,7 @@ fun AddEditCustomerDialog(
                         value = notes,
                         onValueChange = { notes = it },
                         label = { Text("Notes / Special Instructions") },
-                        leadingIcon = { Icon(Icons.Default.Notes, contentDescription = null) },
+                        leadingIcon = { Icon(Icons.AutoMirrored.Filled.Notes, contentDescription = null) },
                         modifier = Modifier.fillMaxWidth(),
                         maxLines = 3
                     )

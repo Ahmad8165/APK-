@@ -1,5 +1,5 @@
 {
-  "name": "🐬 Dolphin Fiber Network",
+  "name": "Dolphin Fiber",
   "description": "Personal ISP Fee & Customer Management system with offline Room database, payment history, reports, WhatsApp/Call/GPS quick actions, and daily due notifications.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

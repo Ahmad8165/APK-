@@ -5,6 +5,7 @@ import com.example.data.AppDatabase
 import com.example.data.SettingsManager
 import com.example.data.repository.CustomerRepository
 import com.example.notification.DailyDueReceiver
+import com.example.notification.DuePaymentWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,7 +30,10 @@ class DolphinApplication : Application() {
             repository.prepopulateIfEmpty()
         }
 
-        // Schedule daily notification at 9:00 AM
+        // Schedule WorkManager periodic task for daily due fee check
+        DuePaymentWorker.schedulePeriodicCheck(this)
+
+        // Schedule daily notification at configured time
         val timeStr = settingsManager.getNotificationTime()
         val parts = timeStr.split(":")
         val hour = parts.getOrNull(0)?.toIntOrNull() ?: 9
