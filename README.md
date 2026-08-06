@@ -17,4 +17,4 @@ To build the debug APK:
 ```
 
 ---
-*Last updated:* 2026-08-06 20:35:00 UTC (CI build trigger)
+*Last updated:* 2026-08-06 21:02:00 UTC (CI build trigger & wrapper fix)
