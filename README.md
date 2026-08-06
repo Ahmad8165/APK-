@@ -1,0 +1,20 @@
+# 🐬 Dolphin Fiber Network
+
+Personal ISP Fee & Customer Management system built for Android with Jetpack Compose and Room Database.
+
+## Features
+- Customer & Subscriber Management with search and filters
+- Bill & Receipt generation with PDF export and sharing
+- WhatsApp, Phone Call, and GPS Navigation quick actions
+- Payment history and financial summary reports
+- Daily due payment notifications
+- Offline-first Room database
+
+## Build Instructions
+To build the debug APK:
+```bash
+./gradlew assembleDebug
+```
+
+---
+*Last updated:* 2026-08-06 09:43:20 UTC (CI build trigger)
